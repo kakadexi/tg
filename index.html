@@ -123,9 +123,9 @@
         <i class="fas fa-moon text-slate-500 text-lg dark:hidden"></i>
     </button>
 
-    <!-- 主内容区：极简玻璃质感 -->
+    <!-- 主内容区：极简玻璃质感，已去掉标题下方的英文 -->
     <div class="relative z-10 w-full max-w-xl">
-        <!-- 头部标识 + 渐变标题 -->
+        <!-- 头部标识 + 渐变标题（已移除英文副标题） -->
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center p-4 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-sm mb-5 ring-1 ring-white/40 dark:ring-white/10 shadow-md">
                 <i class="fab fa-telegram-plane text-4xl text-tgblue drop-shadow-md"></i>
@@ -136,7 +136,7 @@
                 <span class="text-3xl md:text-4xl">✨</span>
                 <span class="text-base sm:text-lg font-semibold text-slate-500 dark:text-slate-300 ml-1">免费TG代理</span>
             </h1>
-            <p class="text-slate-400 dark:text-slate-500 text-[11px] tracking-[0.25em] uppercase font-mono mt-2">· quantum direct cluster ·</p>
+            <!-- 已删除原本的英文小字：· quantum direct cluster · -->
         </div>
 
         <!-- 玻璃卡片 - 纯净代理列表 -->
@@ -260,12 +260,6 @@
         // 执行渲染 & 主题
         renderNodes();
         initTheme();
-
-        // 可选: 添加简单手势优化 (无音乐/无跑马灯，完全清爽)
-        // 阻止可能的空指针
-        if (document.getElementById('theme-toggle')) {
-            // 已经存在onclick属性无需额外绑定
-        }
     </script>
 </body>
 </html>
