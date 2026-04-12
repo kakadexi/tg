@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>卡卡的西 · 免费TG代理集群</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tgblue: '#0088cc',
+                        tgalternate: '#00fbff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --transition-speed: 0.3s; }
+        body { 
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+            overflow-x: hidden;
+        }
+        /* 隐藏滚动条保持干净 */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        
+        /* 背景光晕动画 - 保留氛围但更柔和 */
+        .bg-glow {
+            position: fixed; 
+            width: 600px; 
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 136, 204, 0.2) 0%, transparent 70%);
+            border-radius: 50%; 
+            filter: blur(80px); 
+            z-index: 0;
+            animation: floatGlow 18s infinite alternate;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        @keyframes floatGlow {
+            0% { transform: translate(-20%, -20%) scale(1); opacity: 0.4; }
+            100% { transform: translate(30%, 30%) scale(1.2); opacity: 0.8; }
+        }
+        
+        /* 通透玻璃卡片 (升级质感) */
+        .glass-card {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+        .dark .glass-card {
+            background: rgba(15, 25, 35, 0.55);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* 代理卡片悬浮效果 */
+        .proxy-node {
+            transition: all 0.25s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .dark .proxy-node {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.25);
+        }
+        .proxy-node:hover {
+            transform: translateY(-2px);
+            background: rgba(0, 136, 204, 0.08);
+            border-color: rgba(0, 136, 204, 0.3);
+            box-shadow: 0 8px 20px -8px rgba(0, 136, 204, 0.2);
+        }
+        
+        /* 卡卡的西 专属渐变 + 微光光晕效果 */
+        .glow-name {
+            background: linear-gradient(135deg, #3b82f6, #5c6f8f, #7e8aa2, #4f6f8f);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            filter: drop-shadow(0 0 6px rgba(59,130,246,0.5)) drop-shadow(0 0 12px rgba(100,116,139,0.3));
+            animation: shimmer 5s ease infinite;
+            font-weight: 800;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; filter: drop-shadow(0 0 5px rgba(59,130,246,0.4)); }
+            50% { background-position: 100% 50%; filter: drop-shadow(0 0 12px rgba(56,189,248,0.6)); }
+            100% { background-position: 0% 50%; filter: drop-shadow(0 0 5px rgba(59,130,246,0.4)); }
+        }
+        
+        /* 简约toast */
+        #toast {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        
+        /* 按钮微动效 */
+        .theme-btn {
+            transition: all 0.2s ease;
+        }
+        .theme-btn:hover {
+            transform: scale(1.08);
+            background: rgba(255,255,255,0.3);
+        }
+        .dark .theme-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col items-center justify-center py-8 px-5 relative">
+
+    <!-- 环境光晕 -->
+    <div class="bg-glow"></div>
+
+    <!-- 主题切换按钮 (简约保留，干净交互) -->
+    <button id="theme-toggle" onclick="toggleTheme()" class="theme-btn fixed top-5 right-5 z-50 w-11 h-11 rounded-full bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-slate-200/60 dark:border-white/15 flex items-center justify-center shadow-md">
+        <i class="fas fa-sun text-amber-400 text-lg hidden dark:block"></i>
+        <i class="fas fa-moon text-slate-500 text-lg dark:hidden"></i>
+    </button>
+
+    <!-- 主内容区：极简玻璃质感 -->
+    <div class="relative z-10 w-full max-w-xl">
+        <!-- 头部标识 + 渐变标题 -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center p-4 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-sm mb-5 ring-1 ring-white/40 dark:ring-white/10 shadow-md">
+                <i class="fab fa-telegram-plane text-4xl text-tgblue drop-shadow-md"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight flex flex-wrap justify-center gap-x-2 gap-y-1 items-baseline">
+                <span class="text-3xl md:text-4xl">✨</span>
+                <span class="glow-name text-4xl md:text-5xl">卡卡的西</span>
+                <span class="text-3xl md:text-4xl">✨</span>
+                <span class="text-base sm:text-lg font-semibold text-slate-500 dark:text-slate-300 ml-1">免费TG代理</span>
+            </h1>
+            <p class="text-slate-400 dark:text-slate-500 text-[11px] tracking-[0.25em] uppercase font-mono mt-2">· quantum direct cluster ·</p>
+        </div>
+
+        <!-- 玻璃卡片 - 纯净代理列表 -->
+        <div class="glass-card rounded-[2.5rem] p-5 md:p-7 border border-white/40 dark:border-white/5 shadow-2xl">
+            <!-- 状态栏 简约轻量 -->
+            <div class="flex items-center justify-between mb-6 px-1">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">⚡ 一键直连</span>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-medium">集群状态</p>
+                    <p class="font-black text-tgblue text-xs tracking-wide">✅ 在线代理 11 条</p>
+                </div>
+            </div>
+
+            <!-- 动态代理列表容器 -->
+            <div class="space-y-3" id="proxy-list"></div>
+
+            <!-- 极简脚标 (去除多余推送文字，仅保留科技感) -->
+            <div class="mt-8 pt-5 text-center opacity-40 text-[10px] font-mono tracking-wider text-slate-400 dark:text-slate-500 border-t border-slate-200/30 dark:border-white/5">
+                SOCKS5 · 即时加密隧道
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示toast -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-0 transition-all duration-300 pointer-events-none translate-y-4 z-[999]">
+        <div class="bg-slate-900/90 dark:bg-white/95 backdrop-blur-md text-white dark:text-slate-900 px-5 py-3 rounded-xl shadow-2xl flex items-center gap-2 font-medium text-sm">
+            <i class="fas fa-check-circle text-emerald-400 text-base"></i>
+            <span>配置已复制，正在唤醒 Telegram</span>
+        </div>
+    </div>
+
+    <script>
+        // 纯净代理列表（11条高速节点，无任何广告内容）
+        const proxies = [
+            "tg://socks?server=45.192.200.9&port=5555&user=hanbaocloud&pass=hanbaocloud",
+            "tg://socks?server=47.254.240.76&port=5555&user=socks5&pass=socks5",
+            "tg://socks?server=47.239.202.242&port=6666&user=6666&pass=6666",
+            "tg://socks?server=43.100.106.246&port=2222&user=2222&pass=2222",
+            "tg://socks?server=47.83.174.84&port=6666&user=6666&pass=6666",
+            "tg://socks?server=47.83.186.60&port=5555&user=5555&pass=5555",
+            "tg://socks?server=47.83.8.104&port=6666&user=6666&pass=6666",
+            "tg://socks?server=43.100.106.218&port=2222&user=2222&pass=2222",
+            "tg://socks?server=47.83.1.61&port=5555&user=5555&pass=5555",
+            "tg://socks?server=47.83.174.84&port=6666&user=6666&pass=6666",
+            "tg://socks?server=47.83.186.60&port=5555&user=5555&pass=5555"
+        ];
+
+        // 渲染代理节点 (纯净显示IP+端口)
+        function renderNodes() {
+            const container = document.getElementById('proxy-list');
+            if (!container) return;
+            container.innerHTML = proxies.map((url, idx) => {
+                // 提取服务器参数用于展示
+                const urlParams = new URLSearchParams(url.split('?')[1]);
+                const server = urlParams.get('server') || 'unknown';
+                const port = urlParams.get('port') || '0000';
+                return `
+                    <div class="proxy-node bg-white/40 dark:bg-black/20 rounded-xl p-3.5 flex items-center justify-between cursor-pointer group transition-all" onclick="connectProxy('${url}')">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-[9px] font-bold text-slate-400 dark:text-slate-500 bg-slate-200/40 dark:bg-white/5 px-2 py-0.5 rounded-full">NODE 0${idx+1}</span>
+                                <span class="text-[9px] uppercase text-emerald-500/70 font-mono">active</span>
+                            </div>
+                            <p class="text-sm font-mono font-semibold truncate mt-1 text-slate-700 dark:text-slate-200">${server}:${port}</p>
+                        </div>
+                        <div class="w-9 h-9 rounded-xl bg-tgblue/90 dark:bg-tgblue/80 text-white flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
+                            <i class="fas fa-bolt text-xs"></i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 连接逻辑：复制链接并唤起TG
+        function connectProxy(url) {
+            // 复制代理链接
+            navigator.clipboard.writeText(url).catch(() => {});
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.classList.add('opacity-100', 'translate-y-0');
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                }, 800);
+            }
+            // 延迟跳转，确保复制生效
+            setTimeout(() => {
+                window.location.href = url;
+            }, 180);
+        }
+
+        // 主题切换 (深色/浅色)
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 初始化主题偏好
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                // 跟随系统但默认夜间风格更酷（可选深色）
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+            }
+        }
+
+        // 执行渲染 & 主题
+        renderNodes();
+        initTheme();
+
+        // 可选: 添加简单手势优化 (无音乐/无跑马灯，完全清爽)
+        // 阻止可能的空指针
+        if (document.getElementById('theme-toggle')) {
+            // 已经存在onclick属性无需额外绑定
+        }
+    </script>
+</body>
+</html>
