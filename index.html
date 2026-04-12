@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>卡卡的西 · 免费TG代理集群（带状态标记）</title>
+    <title>卡卡的西 · 免费TG代理集群（跨设备同步）</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script>
@@ -11,157 +11,81 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        tgblue: '#0088cc',
-                    }
+                    colors: { tgblue: '#0088cc' }
                 }
             }
         }
     </script>
     <style>
         :root { --transition-speed: 0.3s; }
-        body { 
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-            overflow-x: hidden;
-        }
+        body { transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
-        
         .bg-glow {
-            position: fixed; 
-            width: 600px; 
-            height: 600px;
+            position: fixed; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(0, 136, 204, 0.2) 0%, transparent 70%);
-            border-radius: 50%; 
-            filter: blur(80px); 
-            z-index: 0;
-            animation: floatGlow 18s infinite alternate;
-            pointer-events: none;
-            opacity: 0.6;
+            border-radius: 50%; filter: blur(80px); z-index: 0;
+            animation: floatGlow 18s infinite alternate; pointer-events: none; opacity: 0.6;
         }
         @keyframes floatGlow {
             0% { transform: translate(-20%, -20%) scale(1); opacity: 0.4; }
             100% { transform: translate(30%, 30%) scale(1.2); opacity: 0.8; }
         }
-        
         .glass-card {
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            background: rgba(255, 255, 255, 0.5);
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.5); transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.02);
         }
         .dark .glass-card {
-            background: rgba(15, 25, 35, 0.55);
-            backdrop-filter: blur(24px);
+            background: rgba(15, 25, 35, 0.55); backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        
         .proxy-node {
-            transition: all 0.25s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.25s ease; border: 1px solid rgba(0, 0, 0, 0.05);
         }
         .dark .proxy-node {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(0, 0, 0, 0.25);
         }
         .proxy-node:hover {
-            transform: translateY(-2px);
-            background: rgba(0, 136, 204, 0.08);
-            border-color: rgba(0, 136, 204, 0.3);
-            box-shadow: 0 8px 20px -8px rgba(0, 136, 204, 0.2);
+            transform: translateY(-2px); background: rgba(0, 136, 204, 0.08);
+            border-color: rgba(0, 136, 204, 0.3); box-shadow: 0 8px 20px -8px rgba(0, 136, 204, 0.2);
         }
-        
         .glow-name {
             background: linear-gradient(135deg, #3b82f6, #5c6f8f, #7e8aa2, #4f6f8f);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            filter: drop-shadow(0 0 6px rgba(59,130,246,0.5)) drop-shadow(0 0 12px rgba(100,116,139,0.3));
-            animation: shimmer 5s ease infinite;
-            font-weight: 800;
+            background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+            color: transparent; filter: drop-shadow(0 0 6px rgba(59,130,246,0.5)) drop-shadow(0 0 12px rgba(100,116,139,0.3));
+            animation: shimmer 5s ease infinite; font-weight: 800;
         }
         @keyframes shimmer {
             0% { background-position: 0% 50%; filter: drop-shadow(0 0 5px rgba(59,130,246,0.4)); }
             50% { background-position: 100% 50%; filter: drop-shadow(0 0 12px rgba(56,189,248,0.6)); }
             100% { background-position: 0% 50%; filter: drop-shadow(0 0 5px rgba(59,130,246,0.4)); }
         }
-        
-        #toast {
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-        
+        #toast { transition: opacity 0.25s ease, transform 0.25s ease; }
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.2s ease;
         }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .edit-modal, .import-modal {
+            width: 90%; max-width: 680px; max-height: 85vh;
+            background: rgba(30, 35, 48, 0.9); backdrop-filter: blur(20px);
+            border-radius: 2rem; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 25px 40px -12px black; overflow: hidden;
         }
-        .edit-modal {
-            width: 90%;
-            max-width: 680px;
-            max-height: 85vh;
-            background: rgba(30, 35, 48, 0.9);
-            backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 25px 40px -12px black;
-            overflow: hidden;
+        .dark .edit-modal, .dark .import-modal { background: rgba(15, 20, 30, 0.95); }
+        textarea {
+            background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);
+            color: white; font-family: monospace; font-size: 13px; line-height: 1.5;
         }
-        .dark .edit-modal {
-            background: rgba(15, 20, 30, 0.95);
-        }
-        .edit-modal textarea {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            font-family: monospace;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-        .edit-modal textarea:focus {
-            outline: none;
-            border-color: #0088cc;
-        }
-        .status-badge {
-            transition: all 0.1s ease;
-        }
-        .status-btn {
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.2);
-            transition: all 0.2s;
-        }
-        .status-btn:hover {
-            transform: scale(1.1);
-            background: rgba(0,136,204,0.3);
-        }
+        textarea:focus { outline: none; border-color: #0088cc; }
+        .status-btn { cursor: pointer; width: 28px; height: 28px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: all 0.2s; }
+        .status-btn:hover { transform: scale(1.1); background: rgba(0,136,204,0.3); }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col items-center justify-center py-8 px-5 relative">
-
     <div class="bg-glow"></div>
-
     <button id="theme-toggle" onclick="toggleTheme()" class="fixed top-5 right-5 z-50 w-11 h-11 rounded-full bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-slate-200/60 dark:border-white/15 flex items-center justify-center shadow-md">
         <i class="fas fa-sun text-amber-400 text-lg hidden dark:block"></i>
         <i class="fas fa-moon text-slate-500 text-lg dark:hidden"></i>
@@ -186,29 +110,33 @@
                     <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                     <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">⚡ 一键直连</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div class="text-right">
+                <div class="flex items-center gap-2">
+                    <div class="text-right mr-1">
                         <p class="text-[10px] text-slate-400 uppercase tracking-wider font-medium">集群状态</p>
                         <p class="font-black text-tgblue text-xs tracking-wide"><span id="proxyCount">0</span> 条在线</p>
                     </div>
-                    <button id="openEditBtn" class="w-8 h-8 rounded-full bg-white/30 dark:bg-black/30 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-tgblue/20 transition-all" title="编辑代理列表">
+                    <button id="exportConfigBtn" class="w-8 h-8 rounded-full bg-white/30 dark:bg-black/30 flex items-center justify-center hover:bg-tgblue/20 transition-all" title="导出配置">
+                        <i class="fas fa-download text-xs"></i>
+                    </button>
+                    <button id="importConfigBtn" class="w-8 h-8 rounded-full bg-white/30 dark:bg-black/30 flex items-center justify-center hover:bg-tgblue/20 transition-all" title="导入配置">
+                        <i class="fas fa-upload text-xs"></i>
+                    </button>
+                    <button id="openEditBtn" class="w-8 h-8 rounded-full bg-white/30 dark:bg-black/30 flex items-center justify-center hover:bg-tgblue/20 transition-all" title="编辑代理列表">
                         <i class="fas fa-pen text-xs"></i>
                     </button>
-                    <button id="resetStatusBtn" class="w-8 h-8 rounded-full bg-white/30 dark:bg-black/30 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-amber-500/20 transition-all" title="重置所有状态标记">
+                    <button id="resetStatusBtn" class="w-8 h-8 rounded-full bg-white/30 dark:bg-black/30 flex items-center justify-center hover:bg-amber-500/20 transition-all" title="重置所有状态标记">
                         <i class="fas fa-undo-alt text-xs"></i>
                     </button>
                 </div>
             </div>
-
             <div class="space-y-3" id="proxy-list"></div>
-
             <div class="mt-6 pt-4 text-center text-[10px] text-slate-400 dark:text-slate-500 border-t border-slate-200/30 dark:border-white/5">
-                <i class="fas fa-info-circle mr-1"></i> 点击节点连接Telegram，连接成功后点击👍/👎手动标记连通性，状态自动保存。
+                <i class="fas fa-info-circle mr-1"></i> 点击节点连接Telegram，👍/👎手动标记状态。使用导出/导入按钮在不同设备间同步配置。
             </div>
         </div>
     </div>
 
-    <!-- 编辑浮层 -->
+    <!-- 编辑代理模态框 -->
     <div id="editModal" class="modal-overlay">
         <div class="edit-modal p-5 flex flex-col">
             <div class="flex justify-between items-center mb-4">
@@ -224,6 +152,22 @@
         </div>
     </div>
 
+    <!-- 导入配置模态框 -->
+    <div id="importModal" class="modal-overlay">
+        <div class="import-modal p-5 flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold flex items-center gap-2"><i class="fas fa-file-import text-tgblue"></i> 导入配置</h3>
+                <button id="closeImportBtn" class="text-white/70 hover:text-white text-xl">&times;</button>
+            </div>
+            <p class="text-xs text-slate-300 mb-3">粘贴您在其他设备导出的完整配置JSON，将<strong>完全覆盖</strong>当前代理列表和状态标记。</p>
+            <textarea id="importJsonInput" rows="10" class="w-full rounded-xl p-3 resize-y font-mono text-sm" placeholder='{"proxies":["tg://..."],"status":{"tg://...":"good"}}'></textarea>
+            <div class="flex justify-end gap-3 mt-5">
+                <button id="cancelImportBtn" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-sm transition">取消</button>
+                <button id="confirmImportBtn" class="px-5 py-2 rounded-xl bg-tgblue hover:bg-tgblue/80 text-white font-bold shadow-lg transition">确认导入</button>
+            </div>
+        </div>
+    </div>
+
     <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-0 transition-all duration-300 pointer-events-none translate-y-4 z-[999]">
         <div class="bg-slate-900/90 dark:bg-white/95 backdrop-blur-md text-white dark:text-slate-900 px-5 py-3 rounded-xl shadow-2xl flex items-center gap-2 font-medium text-sm">
             <i class="fas fa-check-circle text-emerald-400 text-base"></i>
@@ -232,7 +176,6 @@
     </div>
 
     <script>
-        // 默认代理列表
         const DEFAULT_PROXIES = [
             "tg://socks?server=45.192.200.9&port=5555&user=hanbaocloud&pass=hanbaocloud",
             "tg://socks?server=47.254.240.76&port=5555&user=socks5&pass=socks5",
@@ -248,273 +191,186 @@
         ];
 
         let currentProxies = [...DEFAULT_PROXIES];
-        // 状态存储: { "proxyUrl": "good" | "bad" | null }
-        let statusMap = new Map();
+        let statusMap = new Map(); // key: proxyUrl, value: 'good' or 'bad'
 
-        // ---------- 状态存储操作 ----------
-        function loadStatusFromStorage() {
-            const stored = localStorage.getItem('kkx_proxy_status');
-            if (stored) {
-                try {
-                    const obj = JSON.parse(stored);
-                    statusMap = new Map(Object.entries(obj));
-                } catch(e) {}
-            }
-        }
-        function saveStatusToStorage() {
-            const obj = Object.fromEntries(statusMap);
-            localStorage.setItem('kkx_proxy_status', JSON.stringify(obj));
-        }
-        function setProxyStatus(url, status) { // status: 'good' / 'bad'
-            if (status === 'good' || status === 'bad') {
-                statusMap.set(url, status);
-            } else {
-                statusMap.delete(url);
-            }
-            saveStatusToStorage();
-            renderProxyList(); // 重新渲染更新图标
-        }
-        function resetAllStatus() {
-            statusMap.clear();
-            saveStatusToStorage();
-            renderProxyList();
-            showToast('已重置所有节点状态标记', false);
-        }
-        // 当代理列表变更时，清理已经不存在的代理的状态
-        function pruneStatusByProxies(proxiesArray) {
-            const existingUrls = new Set(proxiesArray);
-            for (let key of statusMap.keys()) {
-                if (!existingUrls.has(key)) {
-                    statusMap.delete(key);
-                }
-            }
-            saveStatusToStorage();
-        }
-
-        // 代理列表存储
+        // ---------- 存储操作 ----------
         function loadProxiesFromStorage() {
             const stored = localStorage.getItem('kkx_proxies');
             if (stored) {
                 try {
                     const parsed = JSON.parse(stored);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
-                        currentProxies = parsed;
-                        pruneStatusByProxies(currentProxies);
-                        return true;
-                    }
+                    if (Array.isArray(parsed) && parsed.length) currentProxies = parsed;
                 } catch(e) {}
             }
-            currentProxies = [...DEFAULT_PROXIES];
-            pruneStatusByProxies(currentProxies);
-            return false;
+            pruneStatusByProxies();
         }
-        function saveProxiesToStorage() {
-            localStorage.setItem('kkx_proxies', JSON.stringify(currentProxies));
-            pruneStatusByProxies(currentProxies);
+        function saveProxiesToStorage() { localStorage.setItem('kkx_proxies', JSON.stringify(currentProxies)); }
+        function loadStatusFromStorage() {
+            const stored = localStorage.getItem('kkx_proxy_status');
+            if (stored) {
+                try { statusMap = new Map(Object.entries(JSON.parse(stored))); } catch(e) {}
+            }
+            pruneStatusByProxies();
         }
+        function saveStatusToStorage() { localStorage.setItem('kkx_proxy_status', JSON.stringify(Object.fromEntries(statusMap))); }
+        function pruneStatusByProxies() {
+            const existing = new Set(currentProxies);
+            for (let key of statusMap.keys()) if (!existing.has(key)) statusMap.delete(key);
+            saveStatusToStorage();
+        }
+        function setProxyStatus(url, status) {
+            if (status === 'good' || status === 'bad') statusMap.set(url, status);
+            else statusMap.delete(url);
+            saveStatusToStorage();
+            renderProxyList();
+        }
+        function resetAllStatus() { statusMap.clear(); saveStatusToStorage(); renderProxyList(); showToast('已重置所有节点状态', false); }
         function resetToDefault() {
             currentProxies = [...DEFAULT_PROXIES];
             saveProxiesToStorage();
-            // 重置所有状态（因为列表变了）
             statusMap.clear();
             saveStatusToStorage();
             renderProxyList();
             updateProxyCountDisplay();
-            showToast('已恢复默认代理列表，状态已清空', false);
+            showToast('已恢复默认代理列表', false);
         }
 
-        function updateProxyCountDisplay() {
-            const countSpan = document.getElementById('proxyCount');
-            if (countSpan) countSpan.innerText = currentProxies.length;
+        // 导出完整配置（代理+状态）
+        function exportFullConfig() {
+            const config = {
+                version: 1,
+                proxies: currentProxies,
+                status: Object.fromEntries(statusMap)
+            };
+            const jsonStr = JSON.stringify(config, null, 2);
+            // 复制到剪贴板
+            navigator.clipboard.writeText(jsonStr).then(() => {
+                showToast('配置已复制到剪贴板，可粘贴到其他设备导入', false);
+            }).catch(() => {
+                // fallback: 弹窗显示
+                prompt('请手动复制以下配置:', jsonStr);
+            });
         }
 
-        function getStatusIconAndText(status) {
-            if (status === 'good') {
-                return { icon: 'fa-circle-check', color: 'text-emerald-500', bg: 'bg-emerald-500/20', text: '可达', tooltip: '已验证可用' };
-            } else if (status === 'bad') {
-                return { icon: 'fa-circle-xmark', color: 'text-red-400', bg: 'bg-red-500/20', text: '不通', tooltip: '已验证失效' };
-            } else {
-                return { icon: 'fa-question-circle', color: 'text-slate-400', bg: 'bg-slate-400/20', text: '未测', tooltip: '点击连接后手动标记' };
+        // 导入配置
+        function importConfig(jsonStr) {
+            try {
+                const config = JSON.parse(jsonStr);
+                if (!config.proxies || !Array.isArray(config.proxies) || config.proxies.length === 0) throw new Error('无效的代理列表');
+                currentProxies = config.proxies;
+                saveProxiesToStorage();
+                if (config.status && typeof config.status === 'object') {
+                    statusMap = new Map(Object.entries(config.status));
+                    // 过滤无效url
+                    pruneStatusByProxies();
+                } else {
+                    statusMap.clear();
+                    saveStatusToStorage();
+                }
+                renderProxyList();
+                updateProxyCountDisplay();
+                showToast(`导入成功，共 ${currentProxies.length} 条代理`, false);
+                return true;
+            } catch (err) {
+                showToast('配置格式错误，请确保复制了完整的JSON', true);
+                return false;
             }
         }
 
-        // 渲染代理列表（包含状态按钮和闪电连接）
+        // UI 渲染
+        function updateProxyCountDisplay() { document.getElementById('proxyCount').innerText = currentProxies.length; }
+        function getStatusIconAndText(status) {
+            if (status === 'good') return { icon: 'fa-circle-check', color: 'text-emerald-500', bg: 'bg-emerald-500/20', text: '可达', tooltip: '已验证可用' };
+            if (status === 'bad') return { icon: 'fa-circle-xmark', color: 'text-red-400', bg: 'bg-red-500/20', text: '不通', tooltip: '已验证失效' };
+            return { icon: 'fa-question-circle', color: 'text-slate-400', bg: 'bg-slate-400/20', text: '未测', tooltip: '点击连接后手动标记' };
+        }
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+        function cycleStatus(url) {
+            const cur = statusMap.get(url);
+            if (cur === 'good') setProxyStatus(url, 'bad');
+            else if (cur === 'bad') setProxyStatus(url, null);
+            else setProxyStatus(url, 'good');
+        }
+        window.connectProxy = function(url) {
+            if (!url?.startsWith('tg://')) { showToast('链接无效', true); return; }
+            navigator.clipboard.writeText(url).catch(()=>{});
+            showToast('配置已复制，正在唤醒 Telegram', false);
+            setTimeout(() => window.location.href = url, 180);
+        };
+        function showToast(msg, isError) {
+            const toast = document.getElementById('toast'), span = document.getElementById('toastMsg'), icon = toast?.querySelector('i');
+            if (toast && span) {
+                span.innerText = msg;
+                if (icon) icon.className = isError ? 'fas fa-exclamation-triangle text-amber-400 text-base' : 'fas fa-check-circle text-emerald-400 text-base';
+                toast.classList.add('opacity-100', 'translate-y-0');
+                setTimeout(() => toast.classList.remove('opacity-100', 'translate-y-0'), 1800);
+            }
+        }
         function renderProxyList() {
             const container = document.getElementById('proxy-list');
             if (!container) return;
-            if (!currentProxies.length) {
-                container.innerHTML = `<div class="text-center py-6 text-slate-400 text-sm">暂无代理节点，请点击编辑按钮添加</div>`;
-                updateProxyCountDisplay();
-                return;
-            }
+            if (!currentProxies.length) { container.innerHTML = `<div class="text-center py-6 text-slate-400 text-sm">暂无代理节点，请点击编辑按钮添加</div>`; updateProxyCountDisplay(); return; }
             container.innerHTML = currentProxies.map((url, idx) => {
                 let server = 'unknown', port = '';
                 try {
-                    const urlObj = new URL(url);
-                    if (urlObj.protocol === 'tg:') {
-                        const params = new URLSearchParams(urlObj.search);
-                        server = params.get('server') || 'unknown';
-                        port = params.get('port') || '';
-                    } else {
-                        const sMatch = url.match(/server=([^&]+)/);
-                        const pMatch = url.match(/port=([^&]+)/);
-                        if (sMatch) server = sMatch[1];
-                        if (pMatch) port = pMatch[1];
-                    }
-                } catch(e) {
-                    const sMatch = url.match(/server=([^&]+)/);
-                    const pMatch = url.match(/port=([^&]+)/);
-                    if (sMatch) server = sMatch[1];
-                    if (pMatch) port = pMatch[1];
-                }
+                    const u = new URL(url);
+                    if (u.protocol === 'tg:') { const p = new URLSearchParams(u.search); server = p.get('server') || 'unknown'; port = p.get('port') || ''; }
+                    else { const s = url.match(/server=([^&]+)/), p = url.match(/port=([^&]+)/); if(s) server=s[1]; if(p) port=p[1]; }
+                } catch(e) { const s = url.match(/server=([^&]+)/), p = url.match(/port=([^&]+)/); if(s) server=s[1]; if(p) port=p[1]; }
                 const status = statusMap.get(url) || null;
                 const { icon, color, bg, text, tooltip } = getStatusIconAndText(status);
-                return `
-                    <div class="proxy-node bg-white/40 dark:bg-black/20 rounded-xl p-3.5 flex items-center justify-between gap-2 group transition-all">
-                        <div class="flex-1 min-w-0 cursor-pointer" onclick="connectProxy('${escapeHtml(url)}')">
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="text-[9px] font-bold text-slate-400 dark:text-slate-500 bg-slate-200/40 dark:bg-white/5 px-2 py-0.5 rounded-full">NODE ${String(idx+1).padStart(2,'0')}</span>
-                                <span class="text-[9px] uppercase text-emerald-500/70 font-mono">active</span>
-                            </div>
-                            <p class="text-sm font-mono font-semibold truncate mt-1 text-slate-700 dark:text-slate-200">${escapeHtml(server)}:${escapeHtml(port)}</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <!-- 状态标记区域（手动切换） -->
-                            <div class="flex items-center gap-1 status-badge">
-                                <div class="${bg} rounded-full w-7 h-7 flex items-center justify-center ${color} cursor-pointer hover:scale-105 transition" 
-                                     onclick="event.stopPropagation(); cycleStatus('${escapeHtml(url)}')" title="${tooltip}">
-                                    <i class="fas ${icon} text-sm"></i>
-                                </div>
-                                <span class="text-[10px] font-mono ${color} hidden sm:inline">${text}</span>
-                            </div>
-                            <!-- 连接按钮 -->
-                            <div class="w-9 h-9 rounded-xl bg-tgblue/90 dark:bg-tgblue/80 text-white flex items-center justify-center shadow-md cursor-pointer transition-transform group-hover:scale-105" onclick="connectProxy('${escapeHtml(url)}')">
-                                <i class="fas fa-bolt text-xs"></i>
-                            </div>
-                        </div>
+                return `<div class="proxy-node bg-white/40 dark:bg-black/20 rounded-xl p-3.5 flex items-center justify-between gap-2 group">
+                    <div class="flex-1 min-w-0 cursor-pointer" onclick="connectProxy('${escapeHtml(url)}')">
+                        <div class="flex items-center gap-2 flex-wrap"><span class="text-[9px] font-bold text-slate-400 dark:text-slate-500 bg-slate-200/40 dark:bg-white/5 px-2 py-0.5 rounded-full">NODE ${String(idx+1).padStart(2,'0')}</span><span class="text-[9px] uppercase text-emerald-500/70 font-mono">active</span></div>
+                        <p class="text-sm font-mono font-semibold truncate mt-1 text-slate-700 dark:text-slate-200">${escapeHtml(server)}:${escapeHtml(port)}</p>
                     </div>
-                `;
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1"><div class="${bg} rounded-full w-7 h-7 flex items-center justify-center ${color} cursor-pointer hover:scale-105 transition" onclick="event.stopPropagation(); cycleStatus('${escapeHtml(url)}')" title="${tooltip}"><i class="fas ${icon} text-sm"></i></div><span class="text-[10px] font-mono ${color} hidden sm:inline">${text}</span></div>
+                        <div class="w-9 h-9 rounded-xl bg-tgblue/90 dark:bg-tgblue/80 text-white flex items-center justify-center shadow-md cursor-pointer transition-transform group-hover:scale-105" onclick="connectProxy('${escapeHtml(url)}')"><i class="fas fa-bolt text-xs"></i></div>
+                    </div>
+                </div>`;
             }).join('');
             updateProxyCountDisplay();
         }
 
-        function cycleStatus(url) {
-            const current = statusMap.get(url);
-            if (current === 'good') {
-                setProxyStatus(url, 'bad');
-                showToast(`节点标记为 [不通]`, false);
-            } else if (current === 'bad') {
-                setProxyStatus(url, null);
-                showToast(`节点状态已清除，请重新测试`, false);
-            } else {
-                setProxyStatus(url, 'good');
-                showToast(`节点标记为 [可达] ✓`, false);
-            }
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
-        }
-
-        window.connectProxy = function(url) {
-            if (!url || !url.startsWith('tg://')) {
-                showToast('链接格式无效', true);
-                return;
-            }
-            navigator.clipboard.writeText(url).catch(() => {});
-            showToast('配置已复制，正在唤醒 Telegram', false);
-            setTimeout(() => {
-                window.location.href = url;
-            }, 180);
-        };
-
-        function showToast(msg, isError = false) {
-            const toast = document.getElementById('toast');
-            const span = document.getElementById('toastMsg');
-            const icon = toast?.querySelector('i');
-            if (toast && span) {
-                span.innerText = msg;
-                if (icon) {
-                    if (isError) {
-                        icon.className = 'fas fa-exclamation-triangle text-amber-400 text-base';
-                    } else {
-                        icon.className = 'fas fa-check-circle text-emerald-400 text-base';
-                    }
-                }
-                toast.classList.add('opacity-100', 'translate-y-0');
-                setTimeout(() => {
-                    toast.classList.remove('opacity-100', 'translate-y-0');
-                }, 1800);
-            }
-        }
-
         // 编辑器逻辑
-        function openEditor() {
-            const textarea = document.getElementById('proxyEditor');
-            if (textarea) textarea.value = currentProxies.join('\n');
-            const modal = document.getElementById('editModal');
-            if (modal) modal.classList.add('active');
-        }
-        function closeEditor() {
-            const modal = document.getElementById('editModal');
-            if (modal) modal.classList.remove('active');
-        }
-        function saveFromEditor() {
-            const textarea = document.getElementById('proxyEditor');
-            if (!textarea) return;
-            let raw = textarea.value;
-            let lines = raw.split(/\r?\n/);
-            let newProxies = [];
-            for (let line of lines) {
-                line = line.trim();
-                if (line === "") continue;
-                if (line.startsWith('tg://') || (line.includes('server=') && line.includes('port='))) {
-                    newProxies.push(line);
-                } else {
-                    showToast(`忽略无效行: ${line.substring(0, 30)}`, true);
-                }
-            }
-            if (newProxies.length === 0) {
-                showToast('至少保留一个有效代理链接', true);
-                return;
-            }
+        function openEditModal() { document.getElementById('proxyEditor').value = currentProxies.join('\n'); document.getElementById('editModal').classList.add('active'); }
+        function closeEditModal() { document.getElementById('editModal').classList.remove('active'); }
+        function saveEdit() {
+            const raw = document.getElementById('proxyEditor').value;
+            const lines = raw.split(/\r?\n/).filter(l=>l.trim());
+            const newProxies = lines.filter(l=>l.startsWith('tg://') || (l.includes('server=')&&l.includes('port=')));
+            if (!newProxies.length) { showToast('至少保留一个有效代理', true); return; }
             currentProxies = newProxies;
             saveProxiesToStorage();
-            // 清空所有状态（因为代理列表变了，旧状态无意义）
             statusMap.clear();
             saveStatusToStorage();
             renderProxyList();
-            closeEditor();
-            showToast(`已更新 ${currentProxies.length} 条代理，状态已重置`, false);
+            closeEditModal();
+            showToast(`已更新 ${currentProxies.length} 条代理`, false);
+        }
+
+        // 导入模态框
+        let importModal = null, importTextarea = null;
+        function openImportModal() { if(importModal) importModal.classList.add('active'); if(importTextarea) importTextarea.value = ''; }
+        function closeImportModal() { if(importModal) importModal.classList.remove('active'); }
+        function confirmImport() {
+            const raw = importTextarea.value.trim();
+            if (!raw) { showToast('请粘贴配置内容', true); return; }
+            if (importConfig(raw)) closeImportModal();
         }
 
         window.toggleTheme = function() {
             const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.setItem('theme', 'light'); }
+            else { html.classList.add('dark'); localStorage.setItem('theme', 'dark'); }
         };
         function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-            } else if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (prefersDark) document.documentElement.classList.add('dark');
-                else document.documentElement.classList.remove('dark');
-            }
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light') document.documentElement.classList.remove('dark');
+            else if (saved === 'dark') document.documentElement.classList.add('dark');
+            else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
+            else document.documentElement.classList.remove('dark');
         }
 
         function init() {
@@ -523,35 +379,21 @@
             renderProxyList();
             initTheme();
 
-            const openBtn = document.getElementById('openEditBtn');
-            const closeBtn = document.getElementById('closeModalBtn');
-            const saveBtn = document.getElementById('saveProxyBtn');
-            const resetBtn = document.getElementById('resetDefaultBtn');
-            const resetStatusBtn = document.getElementById('resetStatusBtn');
-            const modal = document.getElementById('editModal');
+            document.getElementById('openEditBtn').addEventListener('click', openEditModal);
+            document.getElementById('closeModalBtn').addEventListener('click', closeEditModal);
+            document.getElementById('saveProxyBtn').addEventListener('click', saveEdit);
+            document.getElementById('resetDefaultBtn').addEventListener('click', ()=>{ if(confirm('重置默认将覆盖当前列表并清空状态，确定吗？')) resetToDefault(); });
+            document.getElementById('resetStatusBtn').addEventListener('click', ()=>{ if(confirm('重置所有节点的通/断标记？')) resetAllStatus(); });
+            document.getElementById('exportConfigBtn').addEventListener('click', exportFullConfig);
+            document.getElementById('importConfigBtn').addEventListener('click', openImportModal);
 
-            if (openBtn) openBtn.addEventListener('click', openEditor);
-            if (closeBtn) closeBtn.addEventListener('click', closeEditor);
-            if (saveBtn) saveBtn.addEventListener('click', saveFromEditor);
-            if (resetBtn) resetBtn.addEventListener('click', () => {
-                if (confirm('重置默认将覆盖当前代理列表并清空所有状态，确定吗？')) {
-                    resetToDefault();
-                    const ta = document.getElementById('proxyEditor');
-                    if (ta && modal && modal.classList.contains('active')) {
-                        ta.value = DEFAULT_PROXIES.join('\n');
-                    }
-                }
-            });
-            if (resetStatusBtn) resetStatusBtn.addEventListener('click', () => {
-                if (confirm('重置所有节点的“通/不通”标记？')) {
-                    resetAllStatus();
-                }
-            });
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeEditor();
-                });
-            }
+            importModal = document.getElementById('importModal');
+            importTextarea = document.getElementById('importJsonInput');
+            document.getElementById('closeImportBtn').addEventListener('click', closeImportModal);
+            document.getElementById('cancelImportBtn').addEventListener('click', closeImportModal);
+            document.getElementById('confirmImportBtn').addEventListener('click', confirmImport);
+            importModal.addEventListener('click', (e) => { if(e.target === importModal) closeImportModal(); });
+            document.getElementById('editModal').addEventListener('click', (e) => { if(e.target === document.getElementById('editModal')) closeEditModal(); });
         }
         init();
     </script>
