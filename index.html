@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>卡卡的西✨免费TG代理 - 实时高效抓取</title>
+    <title>卡卡的西✨免费TG代理 - 纯净流</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
@@ -13,7 +13,7 @@
                 extend: {
                     colors: {
                         brand: {
-                            500: '#0088cc', /* TG 标准蓝 */
+                            500: '#0088cc',
                             600: '#0074b3',
                         }
                     }
@@ -22,15 +22,10 @@
         }
     </script>
     <style>
-        body { 
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        }
-        /* 隐藏滚动条 */
+        body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-
-        /* 骨架屏闪烁 */
         .shimmer {
             background: linear-gradient(90deg, rgba(255,255,255,0.01) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.01) 75%);
             background-size: 200% 100%;
@@ -50,7 +45,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight text-white select-none">卡卡的西✨免费TG代理</h1>
-                    <p class="text-xs text-slate-500 mt-0.5 select-none">自动流式抓取 · 纯净无广告 · 定时刷新</p>
+                    <p class="text-xs text-slate-500 mt-0.5 select-none">纯净去噪模式 · 试验性免密呼叫</p>
                 </div>
             </div>
             
@@ -58,7 +53,7 @@
                 <span class="text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-slate-400" id="statusText">
                     STATUS: SYNCING...
                 </span>
-                <button id="refreshBtn" class="p-2 bg-slate-900 hover:bg-slate-800 active:scale-95 border border-slate-800 rounded text-slate-400 hover:text-white transition-all" title="手动刷新数据">
+                <button id="refreshBtn" class="p-2 bg-slate-900 hover:bg-slate-800 active:scale-95 border border-slate-800 rounded text-slate-400 hover:text-white transition-all">
                     <i class="fas fa-arrows-rotate text-sm"></i>
                 </button>
             </div>
@@ -73,8 +68,7 @@
 
             <div class="mt-6 pt-4 border-t border-slate-900 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-500 font-mono">
                 <div class="flex items-center gap-4">
-                    <span><i class="fas fa-lock text-emerald-600"></i> TLS-ENCRYPTED</span>
-                    <span><i class="fas fa-circle-check text-slate-600"></i> AUTOMATIC_FILTER</span>
+                    <span><i class="fas fa-lock text-emerald-600"></i> NO-CREDENTIALS-MODE</span>
                 </div>
                 <span>INTERVAL: 20M</span>
             </div>
@@ -90,8 +84,6 @@
 
     <script>
         const PROXY_API_URL = 'https://gh-proxy.org/https://raw.githubusercontent.com/watchttvv/free-proxy-list/refs/heads/main/proxy.txt';
-        const PROXY_USER = 'TG频道@stymei';
-        const PROXY_PASS = 'TG频道@stymei';
 
         async function fetchProxies() {
             const listContainer = document.getElementById('proxy-list');
@@ -112,7 +104,6 @@
                     const match = line.trim().match(/^(socks5:\/\/[^:\s]+:\d+)/i);
                     if (match) {
                         const rawProxy = match[1];
-                        // 核心安全策略：排除包含 'x' 或 'X' 的节点
                         if (!/x/i.test(rawProxy)) {
                             filteredProxies.push(rawProxy);
                         }
@@ -130,19 +121,19 @@
                 listContainer.innerHTML = `
                     <div class="bg-red-950/10 rounded p-6 text-center border border-red-900/20 font-mono">
                         <p class="text-xs text-red-400">⚡ Fetch Pipe Interrupted</p>
-                        <p class="text-[10px] text-slate-600 mt-1">${error.message}</p>
                         <button onclick="fetchProxies()" class="mt-4 text-[11px] bg-slate-900 hover:bg-slate-800 px-3 py-1 rounded border border-slate-800 text-slate-400 transition-colors">RETRY</button>
                     </div>
                 `;
             }
         }
         
+        // 【核心修改点】：完全移除了 user 和 pass 参数的拼接，仅保留服务器和端口
         function convertToTgLink(socksUrl) {
             const url = socksUrl.replace(/^socks5:\/\//i, '');
             const [hostport] = url.split('?');
             const [server, port] = hostport.split(':');
             
-            return `tg://socks?server=${encodeURIComponent(server)}&port=${encodeURIComponent(port)}&user=${encodeURIComponent(PROXY_USER)}&pass=${encodeURIComponent(PROXY_PASS)}`;
+            return `tg://socks?server=${encodeURIComponent(server)}&port=${encodeURIComponent(port)}`;
         }
         
         function renderProxyNodes(proxiesList) {
@@ -166,7 +157,7 @@
                             <p class="text-sm font-bold text-slate-300 mt-0.5 truncate select-all" title="${serverIp}">${serverIp}</p>
                         </div>
                         <div class="flex items-center gap-1.5 shrink-0">
-                            <button onclick="copyRawLink(event, '${tgLink}')" class="p-2 text-slate-500 hover:text-slate-300 bg-slate-950/40 hover:bg-slate-900 rounded border border-transparent hover:border-slate-800 transition-all" title="复制原始协议链">
+                            <button onclick="copyRawLink(event, '${tgLink}')" class="p-2 text-slate-500 hover:text-slate-300 bg-slate-950/40 hover:bg-slate-900 rounded border border-transparent hover:border-slate-800 transition-all">
                                 <i class="far fa-copy text-xs"></i>
                             </button>
                             <button onclick="connectProxy('${tgLink.replace(/'/g, "\\'")}')" class="px-3 py-1.5 text-xs bg-brand-500 hover:bg-brand-600 text-white font-bold rounded transition-all active:scale-95">
@@ -197,7 +188,7 @@
         
         function connectProxy(tgUrl) {
             navigator.clipboard.writeText(tgUrl);
-            showToast('CONFIG_COPIED_CALLING_TG');
+            showToast('CLEAN_CONFIG_CALLING_TG');
             setTimeout(() => {
                 window.location.href = tgUrl;
             }, 300);
